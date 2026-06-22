@@ -1,0 +1,41 @@
+{
+  "level": "AI Starter",
+  "level_number": 1,
+  "completed_parts": [],
+  "current_part": "Part 02",
+  "current_clip": null,
+  "practice_completed": [],
+  "theory_completed": [],
+  "skills_created": [],
+  "commands_created": [],
+  "hooks_created": [],
+  "mcp_connected": [],
+  "plugins_installed": [],
+  "started_at": null,
+  "priorities_for_part06": [],
+  "current_levels": {
+    "DECOMP": 1.0,
+    "VERIFY": 1.0,
+    "ORCH": 1.0,
+    "FAIL": 1.0,
+    "CTX": 1.0,
+    "META": 1.0
+  },
+  "priorities_for_part05": [],
+  "last_activity": null,
+  "environment": {
+    "os": null,
+    "model": null,
+    "claude_version": null,
+    "default_mode": null,
+    "preferred_mode": null,
+    "alias_set": false,
+    "alias_package": null,
+    "shell_rc": null,
+    "statusline_set": false
+  },
+  "diagnosis": {
+    "initial": null,
+    "final": null
+  }
+}

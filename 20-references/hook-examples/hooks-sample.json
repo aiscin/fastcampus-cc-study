@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "description": "파일 저장 후 알림 사운드 재생",
+        "matcher": "tool == 'Write'",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Glass.aiff 2>/dev/null || echo '저장 완료'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "description": "작업 완료 시 요약 자동 저장",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"[$(date '+%Y-%m-%d %H:%M')] 세션 종료\" >> my-work/reports/session-log.txt"
+          }
+        ]
+      }
+    ]
+  }
+}

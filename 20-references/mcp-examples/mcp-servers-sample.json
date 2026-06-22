@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-notion"],
+      "env": {
+        "NOTION_API_KEY": "여기에_노션_API_키_입력"
+      }
+    },
+    "google-drive": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-google-drive"],
+      "env": {
+        "GOOGLE_CLIENT_ID": "여기에_클라이언트_ID",
+        "GOOGLE_CLIENT_SECRET": "여기에_클라이언트_시크릿"
+      }
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-slack"],
+      "env": {
+        "SLACK_BOT_TOKEN": "여기에_슬랙_봇_토큰"
+      }
+    }
+  }
+}

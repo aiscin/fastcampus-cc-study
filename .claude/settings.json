@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [],
+    "deny": []
+  },
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/rm-to-trash.py\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -EncodedCommand QQBkAGQALQBUAHkAcABlACAALQBBAHMAcwBlAG0AYgBsAHkATgBhAG0AZQAgAFAAcgBlAHMAZQBuAHQAYQB0AGkAbwBuAEMAbwByAGUACgAkAHAAIAA9ACAATgBlAHcALQBPAGIAagBlAGMAdAAgAFMAeQBzAHQAZQBtAC4AVwBpAG4AZABvAHcAcwAuAE0AZQBkAGkAYQAuAE0AZQBkAGkAYQBQAGwAYQB5AGUAcgAKACQAcAAuAFYAbwBsAHUAbQBlACAAPQAgADEALgAwAAoAJABwAC4ATwBwAGUAbgAoACgATgBlAHcALQBPAGIAagBlAGMAdAAgAFMAeQBzAHQAZQBtAC4AVQByAGkAKAAnAEQAOgBcAMzHlMasuVwAeQBvAHIAaQAtAGEAbgB0AGkAZwByAGEAdgBpAHQAeQBcAFAAYQByAHQAIAA0ACAAfgAgAFAAYQByAHQAIAA1AFwAZgBhAHMAdABjAGEAbQBwAHUAcwAtAGMAYwBcADIAMAAtAHIAZQBmAGUAcgBlAG4AYwBlAHMAXAB1AG4AaQB2AGUAcgBzAGYAaQBlAGwAZAAtAG4AZQB3AC0AbgBvAHQAaQBmAGkAYwBhAHQAaQBvAG4ALQAwADYANQAtADQAOQA0ADUANAA2AC4AbQBwADMAJwApACkAKQAKACQAbgAgAD0AIAAwAAoAdwBoAGkAbABlACAAKAAtAG4AbwB0ACAAJABwAC4ATgBhAHQAdQByAGEAbABEAHUAcgBhAHQAaQBvAG4ALgBIAGEAcwBUAGkAbQBlAFMAcABhAG4AIAAtAGEAbgBkACAAJABuACAALQBsAHQAIAA1ADAAKQAgAHsAIABTAHQAYQByAHQALQBTAGwAZQBlAHAAIAAtAE0AaQBsAGwAaQBzAGUAYwBvAG4AZABzACAAMQAwADAAOwAgACQAbgArACsAIAB9AAoAJABwAC4AUABsAGEAeQAoACkACgBTAHQAYQByAHQALQBTAGwAZQBlAHAAIAAtAFMAZQBjAG8AbgBkAHMAIAAzAAoAJABwAC4AQwBsAG8AcwBlACgAKQAKAA=="
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/session-welcome.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}
