@@ -1,0 +1,8 @@
+# naver-news 스킬 의존성
+# 설치: python3 -m pip install --user -r requirements.txt
+#   (PEP 668 외부관리 환경이면 --break-system-packages 추가)
+#
+# holidays: 한국 법정공휴일 자동 계산 (음력 명절·대체공휴일 포함, 미래연도 OK).
+#           미설치 시에도 fetch_news.py는 동작하되 공휴일은 못 거르고
+#           주말+근로자의날·연말폐장만 판정한다(holiday_check=weekday-only-fallback).
+holidays>=0.99
