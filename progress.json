@@ -3,10 +3,10 @@
   "level_number": 1,
   "completed_parts": [],
   "current_part": "Part 06",
-  "current_clip": 4,
-  "practice_completed": [23, 24, 25],
+  "current_clip": 6,
+  "practice_completed": [23, 24, 25, 26, 27],
   "theory_completed": [],
-  "skills_created": ["deep-research", "ideation-funnel"],
+  "skills_created": ["deep-research", "ideation-funnel", "trip-advisor", "naver-news"],
   "commands_created": [],
   "hooks_created": [],
   "mcp_connected": [],
@@ -22,7 +22,7 @@
     "META": 1.0
   },
   "priorities_for_part05": [],
-  "last_activity": "2026-06-22",
+  "last_activity": "2026-06-25",
   "environment": {
     "os": null,
     "model": null,
