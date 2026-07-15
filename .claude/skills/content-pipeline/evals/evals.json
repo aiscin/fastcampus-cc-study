@@ -1,0 +1,40 @@
+{
+  "skill_name": "content-pipeline",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "요즘 제로웨이스트 라이프스타일 트렌드 조사해서 인스타 카드뉴스로 만들어줘",
+      "expected_output": "딥리서치(01-리서치.md) → 카드뉴스 기획(02-plan.json) → 이미지(저화질 초안 후 확인) → card-news.html + preview PNG까지 자동 진행, 이후 '영상까지 갈까요?' 확인",
+      "should_trigger": true,
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "2030 세대 재테크 트렌드 정리해서 콘텐츠 만들어줘",
+      "expected_output": "주제로 딥리서치 후 정보형 카드뉴스 기획·발행. 데이터 한계는 정직성 캡션 반영",
+      "should_trigger": true,
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "이번 주 AI 뉴스 조사해서 카드뉴스로 뽑아줘",
+      "expected_output": "딥리서치→뉴스형 카드뉴스(두괄식·출처)→HTML/PNG 발행",
+      "should_trigger": true,
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "카드뉴스가 뭐야? 어떻게 만드는 거야?",
+      "expected_output": "단순 개념 질문 — 스킬 실행 없이 설명만 한다",
+      "should_trigger": false,
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "이 PDF 보고서 3줄로 요약만 해줘",
+      "expected_output": "요약 작업 — 카드뉴스/영상 파이프라인과 무관하므로 트리거하지 않는다",
+      "should_trigger": false,
+      "files": ["report.pdf"]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "content-pipeline-reel",
+  "version": "1.0.0",
+  "description": "content-pipeline 카드뉴스 → 9:16 릴스 (Remotion)",
+  "scripts": {
+    "render": "remotion render CardReel out/output.mp4"
+  },
+  "//browser": "다운로드가 막히면 make_video.sh가 playwright 크로미움을 --browser-executable로 전달",
+  "dependencies": {
+    "@remotion/cli": "4.0.290",
+    "remotion": "4.0.290",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "typescript": "5.5.4"
+  }
+}

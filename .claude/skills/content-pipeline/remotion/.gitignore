@@ -1,0 +1,5 @@
+node_modules/
+out/
+public/
+src/timings.json
+src/cards.json

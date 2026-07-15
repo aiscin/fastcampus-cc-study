@@ -1,0 +1,104 @@
+{
+  "topic": "2026 반팔티 트렌드 총정리",
+  "audience": "패션·리테일 트렌드에 관심 있는 일반 독자 + MD/바이어",
+  "type": "정보형",
+  "tone": "절제된 친근체 + 데이터 명료체",
+  "cta": "저장",
+  "source": "KREAM 인기순 TOP 50 (남·여) · 2026-06-26 스냅샷 · insane-search 수집",
+  "disclaimer": "KREAM 인기순 스냅샷 1회 기준 · 시장 전체 대표성 없음 · 투자·구매 권유 아님",
+  "api_defaults": {
+    "model": "gpt-image-2",
+    "size": "1088x1360",
+    "crop_to": "1080x1350",
+    "quality": "low",
+    "output_format": "png",
+    "background": "opaque",
+    "accent": "red"
+  },
+  "style_lock": "Monochrome black-and-white editorial fashion illustration with a single bold RED accent color used sparingly (only heart motifs and key accent objects are vivid red; everything else stays pure black-and-white). High-contrast studio lighting, fine paper-grain texture, minimal seamless backdrop, generous negative space. No readable text, no letters, no numbers, no logos, no watermark, no UI frames, no captions.",
+  "cards": [
+    {
+      "card_no": 1,
+      "role": "cover",
+      "title": "2026 반팔티 트렌드 총정리 7",
+      "subtitle": "KREAM 인기순 TOP 50 · 남자는 저지, 여자는 하트 — 숫자로 본 7가지",
+      "key_message": "같은 '반팔티' 검색, 정반대의 매대",
+      "image_prompt": "Draw a 4:5 vertical card-news background. A clean symmetrical flat-lay: on the left a folded athletic soccer jersey, on the right a folded graphic t-shirt with a small vivid red heart motif, laid side by side on a seamless studio surface. Soft top-down light casting gentle shadows, fine paper-grain texture. Keep the upper third completely clean as empty negative space for a headline overlay. Monochrome black-and-white editorial fashion illustration with a single bold RED accent color used sparingly (only heart motifs and key accent objects are vivid red; everything else stays pure black-and-white). High-contrast studio lighting, fine paper-grain texture, minimal seamless backdrop, generous negative space. No readable text, no letters, no numbers, no logos, no watermark, no UI frames, no captions."
+    },
+    {
+      "card_no": 2,
+      "role": "index",
+      "title": "숫자로 본 7가지",
+      "subtitle": "취향 · 브랜드 · 절반 · 순위역전 · 가격 · 볼륨 · 화제성",
+      "key_message": "7개 인사이트 미리보기",
+      "image_prompt": "Draw a 4:5 vertical card-news background. A tidy magazine contact-sheet grid of seven small folded t-shirts arranged in an even 2-by-4 layout on a seamless studio surface, viewed top-down, like an editorial index page. Even soft lighting, fine paper-grain texture. Keep the upper third completely clean as empty negative space for a headline overlay. Monochrome black-and-white editorial fashion illustration with a single bold RED accent color used sparingly (only heart motifs and key accent objects are vivid red; everything else stays pure black-and-white). High-contrast studio lighting, fine paper-grain texture, minimal seamless backdrop, generous negative space. No readable text, no letters, no numbers, no logos, no watermark, no UI frames, no captions.",
+      "caption": "수집 KREAM 인기순 TOP50(남·여) · 신호 순위·집합만 채택(거래량은 성별 분리 불가) · 전문가 4관점 교차검증"
+    },
+    {
+      "card_no": 3,
+      "role": "explainer",
+      "title": "① 성별 취향",
+      "subtitle": "남 46% 스포츠 저지 · 여 하트·로고 그래픽",
+      "key_message": "남성 TOP50의 46%가 스포츠 저지, 여성은 하트·로고 그래픽 티",
+      "image_prompt": "Draw a 4:5 vertical card-news background. A split composition divided down the middle: the left half shows an athletic sports soccer jersey on a hanger, the right half shows a casual graphic t-shirt with a bold vivid red heart motif on a hanger, clearly contrasted. Directional side lighting, fine paper-grain texture. Keep the upper third completely clean as empty negative space for a headline overlay. Monochrome black-and-white editorial fashion illustration with a single bold RED accent color used sparingly (only heart motifs and key accent objects are vivid red; everything else stays pure black-and-white). High-contrast studio lighting, fine paper-grain texture, minimal seamless backdrop, generous negative space. No readable text, no letters, no numbers, no logos, no watermark, no UI frames, no captions."
+    },
+    {
+      "card_no": 4,
+      "role": "explainer",
+      "title": "② 지배 브랜드",
+      "subtitle": "남 Nike+Adidas 40% · 여 Stussy+CDG 38%",
+      "key_message": "남녀 모두 상위 2개 브랜드가 약 40% 점유, 그러나 성격은 정반대",
+      "image_prompt": "Draw a 4:5 vertical card-news background. A minimalist retail rack with rows of identical folded t-shirts neatly stacked, two dominant tall stacks standing out against several shorter ones, evoking market share on a shelf. Soft raking light, fine paper-grain texture. Keep the upper third completely clean as empty negative space for a headline overlay. Monochrome black-and-white editorial fashion illustration with a single bold RED accent color used sparingly (only heart motifs and key accent objects are vivid red; everything else stays pure black-and-white). High-contrast studio lighting, fine paper-grain texture, minimal seamless backdrop, generous negative space. No readable text, no letters, no numbers, no logos, no watermark, no UI frames, no captions."
+    },
+    {
+      "card_no": 5,
+      "role": "explainer",
+      "title": "③ 절반은 서로 다른 상품",
+      "subtitle": "공통 25 · 남전용 25 · 여전용 25 — 신진은 여성관 먼저",
+      "key_message": "TOP50을 겹치면 정확히 반반, 신진 브랜드는 여성 인기순에서 먼저 등장",
+      "image_prompt": "Draw a 4:5 vertical card-news background. Two overlapping piles of folded t-shirts forming a Venn-like arrangement: a shared middle cluster where they overlap, and two distinct outer groups on each side, top-down view on a seamless surface. Even soft light, fine paper-grain texture. Keep the upper third completely clean as empty negative space for a headline overlay. Monochrome black-and-white editorial fashion illustration with a single bold RED accent color used sparingly (only heart motifs and key accent objects are vivid red; everything else stays pure black-and-white). High-contrast studio lighting, fine paper-grain texture, minimal seamless backdrop, generous negative space. No readable text, no letters, no numbers, no logos, no watermark, no UI frames, no captions."
+    },
+    {
+      "card_no": 6,
+      "role": "explainer",
+      "title": "④ 순위 역전",
+      "subtitle": "같은 상품, 남 #46 ↔ 여 #8",
+      "key_message": "동일 상품도 성별 인기순 위치가 수십 계단 뒤바뀐다",
+      "image_prompt": "Draw a 4:5 vertical card-news background. A balance scale where one identical folded t-shirt sits high on one raised pan and the same t-shirt sits low on the opposite lowered pan, expressing a dramatic reversal of position. Dramatic side lighting, fine paper-grain texture. Keep the upper third completely clean as empty negative space for a headline overlay. Monochrome black-and-white editorial fashion illustration with a single bold RED accent color used sparingly (only heart motifs and key accent objects are vivid red; everything else stays pure black-and-white). High-contrast studio lighting, fine paper-grain texture, minimal seamless backdrop, generous negative space. No readable text, no letters, no numbers, no logos, no watermark, no UI frames, no captions."
+    },
+    {
+      "card_no": 7,
+      "role": "explainer",
+      "title": "⑤ 가격 스위트스팟",
+      "subtitle": "100개 중 36개가 5~9만원",
+      "key_message": "가격 분포가 5~9만원 구간에 가장 두껍게 몰린다",
+      "image_prompt": "Draw a 4:5 vertical card-news background. A row of hanging t-shirts arranged like a bell curve, densely clustered and tallest in the center and thinning out toward both ends, each with a small blank price tag, expressing a price sweet spot. Soft even light, fine paper-grain texture. Keep the upper third completely clean as empty negative space for a headline overlay. Monochrome black-and-white editorial fashion illustration with a single bold RED accent color used sparingly (only heart motifs and key accent objects are vivid red; everything else stays pure black-and-white). High-contrast studio lighting, fine paper-grain texture, minimal seamless backdrop, generous negative space. No readable text, no letters, no numbers, no logos, no watermark, no UI frames, no captions."
+    },
+    {
+      "card_no": 8,
+      "role": "explainer",
+      "title": "⑥ 볼륨의 성격",
+      "subtitle": "여성 인기순 = 고볼륨 스테디셀러 쏠림",
+      "key_message": "여성 인기순이 띄우는 상품군이 원래 거래·관심이 큰 스테디셀러 (성별 판매량 비교 아님)",
+      "image_prompt": "Draw a 4:5 vertical card-news background. A very tall neat stack of many identical folded t-shirts rising like a steady column, next to a much shorter scattered pile, expressing high-volume steady sellers versus niche items. Soft top light, fine paper-grain texture. Keep the upper third completely clean as empty negative space for a headline overlay. Monochrome black-and-white editorial fashion illustration with a single bold RED accent color used sparingly (only heart motifs and key accent objects are vivid red; everything else stays pure black-and-white). High-contrast studio lighting, fine paper-grain texture, minimal seamless backdrop, generous negative space. No readable text, no letters, no numbers, no logos, no watermark, no UI frames, no captions."
+    },
+    {
+      "card_no": 9,
+      "role": "explainer",
+      "title": "⑦ 찜만 받는 화제성 (남성 인기순)",
+      "subtitle": "콜라보·국대 저지 = 관심↑ 거래↓",
+      "key_message": "관심은 높지만 실제 거래는 낮은 화제성 상품 — 바잉 깊이 주의",
+      "image_prompt": "Draw a 4:5 vertical card-news background. A single spotlighted soccer jersey on a stand surrounded by many small floating vivid red heart-shaped 'like' icons, but only one or two shopping bags nearby, expressing high attention with low purchase. Dramatic spotlight, fine paper-grain texture. Keep the upper third completely clean as empty negative space for a headline overlay. Monochrome black-and-white editorial fashion illustration with a single bold RED accent color used sparingly (only heart motifs and key accent objects are vivid red; everything else stays pure black-and-white). High-contrast studio lighting, fine paper-grain texture, minimal seamless backdrop, generous negative space. No readable text, no letters, no numbers, no logos, no watermark, no UI frames, no captions."
+    },
+    {
+      "card_no": 10,
+      "role": "closing",
+      "title": "성별 신호는 '무엇이·어느 순위에 뜨나'",
+      "subtitle": "📌 성별관 바잉 전에 저장 · 출처 KREAM 인기순 스냅샷",
+      "key_message": "성별 신호는 거래 숫자가 아니라 무엇이 어느 순위에 뜨는가에 있다",
+      "image_prompt": "Draw a 4:5 vertical card-news background. A single neatly folded t-shirt centered on a clean seamless surface with a simple bookmark ribbon draped over it, calm and conclusive, plenty of empty space around it. Soft even light, fine paper-grain texture. Keep the upper third completely clean as empty negative space for a headline overlay. Monochrome black-and-white editorial fashion illustration with a single bold RED accent color used sparingly (only heart motifs and key accent objects are vivid red; everything else stays pure black-and-white). High-contrast studio lighting, fine paper-grain texture, minimal seamless backdrop, generous negative space. No readable text, no letters, no numbers, no logos, no watermark, no UI frames, no captions.",
+      "caption": "KREAM 인기순 스냅샷 1회 · 순위·집합 기반 · 판매량 비교 아님 · 시장 전체 대표성 없음"
+    }
+  ],
+  "method": "수집: KREAM 인기순 TOP50(남·여) 6지표 · insane-search 크롤링(2026.06.26) → 신호: 순위·집합만 채택(관심·거래량은 성별 분리 불가로 제외) → kkirikkiri Agent Teams 4관점(MD/바이어·트렌드·소비자행동+크리틱) 교차검증 → 7가지 확정"
+}

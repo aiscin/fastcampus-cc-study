@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KREAM 반팔티 트렌드 리포트 — 남녀 비교 (2026-06-26)</title>
+<style>
+  :root{
+    --bg:#0d0d0f; --card:#16161a; --line:#26262c; --ink:#ece9e2; --dim:#9a958c;
+    --m:#5b8def; --f:#e85c8a; --acc:#d8b46a; --warn:#3a2e1a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo",-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding:0 22px 80px}
+  header{padding:64px 0 36px;border-bottom:1px solid var(--line)}
+  .kicker{font-size:12px;letter-spacing:.32em;color:var(--acc);text-transform:uppercase;margin-bottom:18px}
+  h1{font-size:clamp(30px,6vw,52px);font-weight:800;line-height:1.12;letter-spacing:-.02em}
+  h1 .gm{color:var(--m)} h1 .gf{color:var(--f)}
+  .sub{margin-top:18px;color:var(--dim);font-size:15px}
+  .meta{margin-top:10px;color:var(--dim);font-size:12.5px;letter-spacing:.02em}
+
+  .guard{margin:30px 0;background:linear-gradient(180deg,#1a160d,#15130d);border:1px solid #3a2e1a;border-radius:14px;padding:20px 22px}
+  .guard b{color:var(--acc)}
+  .guard ol{margin:10px 0 0 18px;font-size:13.5px;color:#cdc6b8}
+  .guard li{margin:6px 0}
+
+  section{padding:46px 0;border-bottom:1px solid var(--line)}
+  .secnum{font-size:12px;color:var(--acc);letter-spacing:.2em;font-weight:700}
+  h2{font-size:25px;font-weight:800;margin:8px 0 6px;letter-spacing:-.01em}
+  .lead{color:var(--dim);font-size:14.5px;margin-bottom:22px}
+
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:620px){.duo{grid-template-columns:1fr}}
+  .col{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .col.m{border-top:3px solid var(--m)} .col.f{border-top:3px solid var(--f)}
+  .col h3{font-size:14px;letter-spacing:.04em;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .tag{font-size:11px;padding:2px 9px;border-radius:20px;font-weight:700}
+  .tag.m{background:rgba(91,141,239,.16);color:var(--m)} .tag.f{background:rgba(232,92,138,.16);color:var(--f)}
+  .brow{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px dashed #232329;font-size:14px}
+  .brow:last-child{border:0}
+  .brow .n{color:var(--dim);font-variant-numeric:tabular-nums}
+  .bar{height:7px;border-radius:6px;margin-top:3px}
+
+  .stat{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+  .sbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;text-align:center}
+  .sbox .big{font-size:32px;font-weight:800;font-variant-numeric:tabular-nums}
+  .sbox.m .big{color:var(--m)} .sbox.f .big{color:var(--f)}
+  .sbox .lab{font-size:12px;color:var(--dim);margin-top:4px}
+  .sbox .delta{font-size:12px;color:var(--acc);margin-top:6px;font-weight:700}
+
+  table{width:100%;border-collapse:collapse;margin-top:6px;font-size:13.5px}
+  th,td{padding:9px 8px;text-align:left;border-bottom:1px solid var(--line)}
+  th{color:var(--dim);font-weight:600;font-size:12px;letter-spacing:.03em}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;color:var(--dim)}
+  .mrank{color:var(--m);font-weight:700} .frank{color:var(--f);font-weight:700}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .chip{font-size:13px;padding:6px 13px;border-radius:22px;border:1px solid var(--line);background:var(--card)}
+  .chip.m{border-color:rgba(91,141,239,.4)} .chip.f{border-color:rgba(232,92,138,.4)}
+
+  .pricebar{display:flex;align-items:flex-end;gap:10px;height:150px;margin-top:18px;padding-bottom:6px}
+  .pb{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .pb .fill{width:100%;background:linear-gradient(180deg,var(--acc),#8a6f33);border-radius:6px 6px 0 0}
+  .pb .v{font-size:13px;font-weight:700;color:var(--acc)}
+  .pb .l{font-size:11px;color:var(--dim);text-align:center}
+
+  .insight{margin-top:18px;background:#13130f;border-left:3px solid var(--acc);padding:14px 18px;border-radius:0 10px 10px 0;font-size:14px}
+  .insight b{color:var(--acc)}
+  .takeaway{background:linear-gradient(135deg,#1a1320,#13161f);border:1px solid var(--line);border-radius:16px;padding:28px;margin-top:30px}
+  .takeaway .t{font-size:13px;letter-spacing:.2em;color:var(--acc)}
+  .takeaway p{font-size:18px;font-weight:700;margin-top:10px;line-height:1.5}
+  footer{padding:36px 0 0;color:var(--dim);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">KREAM · 반팔티 · 인기순 TOP 50</div>
+  <h1><span class="gm">남자</span>는 저지를,<br><span class="gf">여자</span>는 하트를 입는다</h1>
+  <p class="sub">같은 '반팔티' 검색, 정반대의 풍경 — 남녀 인기순 데이터로 읽은 트렌드</p>
+  <p class="meta">데이터 2026-06-26 · 출처 kream.co.kr · 수집 insane-search · 각 50개(6지표) · 패션·트렌드 전문가 4인 교차검증</p>
+</header>
+
+<div class="guard">
+  <b>⚠️ 이 리포트를 읽는 법 — 데이터 한계 먼저</b>
+  <ol>
+    <li>관심·리뷰·거래 수치는 <b>상품별 누적 총량</b>이라 성별로 분리되지 않는다. "남녀 거래량 동일"은 발견이 아니라 같은 상품의 같은 숫자일 뿐.</li>
+    <li>따라서 성별 차이로 읽을 수 있는 신호는 <b>① 순위 위치 ② TOP50에 무엇이 뜨는가(집합)</b> 둘뿐. 남녀 전환율·퍼널 비교는 불가.</li>
+    <li>모든 해석은 <b>"KREAM 인기순 상위 50개"</b> 한정. 한국 반팔티 시장 전체로 일반화하지 않는다.</li>
+  </ol>
+</div>
+
+<!-- 1. 성별 아키타입 -->
+<section>
+  <div class="secnum">01 — 종합</div>
+  <h2>성별 아키타입</h2>
+  <p class="lead">같은 카테고리지만 수요의 성격이 갈린다. 남성의 '반팔티'는 절반이 스포츠 저지, 여성은 하트·로고 그래픽 티.</p>
+  <div class="stat">
+    <div class="sbox m"><div class="big">46%</div><div class="lab">남성 TOP50 중 스포츠 저지·레플리카 (23개)</div></div>
+    <div class="sbox f"><div class="big">18개</div><div class="lab">여성 TOP50 중 하트 모티프 상품 (남성은 6개)</div></div>
+  </div>
+  <div class="insight"><b>남 = 응원/팀 레플리카 · 여 = 아이덴티티 그래픽.</b> 남성 인기순은 국가대표·레알 마드리드·리버풀·맨유 저지가 채우고, 여성 인기순은 꼼데가르송 하트·스투시 로고가 채운다. 같은 '반팔티'를 검색해도 보이는 매대가 완전히 다르다.</div>
+</section>
+
+<!-- 2. 브랜드 구성 -->
+<section>
+  <div class="secnum">02 — 비교</div>
+  <h2>누가 매대를 지배하나</h2>
+  <p class="lead">TOP50 내 브랜드별 상품 수. 남녀 모두 상위 2개 브랜드가 40%를 점유하지만, 그 브랜드의 성격이 정반대다.</p>
+  <div class="duo">
+    <div class="col m">
+      <h3><span class="tag m">남성</span> 스포츠 글로벌</h3>
+      <div class="brow"><span>Nike</span><span class="n">11</span></div><div class="bar" style="width:100%;background:var(--m)"></div>
+      <div class="brow"><span>Adidas</span><span class="n">9</span></div><div class="bar" style="width:82%;background:var(--m)"></div>
+      <div class="brow"><span>IAB Studio</span><span class="n">5</span></div><div class="bar" style="width:45%;background:#3a4a6a"></div>
+      <div class="brow"><span>Uniqlo · Stussy · Palace</span><span class="n">4</span></div><div class="bar" style="width:36%;background:#3a4a6a"></div>
+    </div>
+    <div class="col f">
+      <h3><span class="tag f">여성</span> 스트리트 프리미엄</h3>
+      <div class="brow"><span>Stussy</span><span class="n">11</span></div><div class="bar" style="width:100%;background:var(--f)"></div>
+      <div class="brow"><span>Play CDG</span><span class="n">8</span></div><div class="bar" style="width:73%;background:var(--f)"></div>
+      <div class="brow"><span>Nike · Carhartt · BAPE</span><span class="n">4</span></div><div class="bar" style="width:36%;background:#6a3a4a"></div>
+      <div class="brow"><span>Adidas · IAB Studio</span><span class="n">3</span></div><div class="bar" style="width:27%;background:#6a3a4a"></div>
+    </div>
+  </div>
+  <div class="insight"><b>구조는 쌍둥이, 내용은 정반대.</b> 남 Nike+Adidas 20개(40%) = 기능·팬덤 / 여 Stussy+CDG 19개(38%) = 아이덴티티·감성 심볼. 성별관 바잉 포트폴리오를 따로 짜야 하는 근거.</div>
+</section>
+
+<!-- 3. 집합 -->
+<section>
+  <div class="secnum">03 — 비교</div>
+  <h2>TOP50의 절반은 서로 다른 상품</h2>
+  <p class="lead">남녀 인기순을 겹쳐보면 공통 25 · 남성 전용 25 · 여성 전용 25 — 정확히 반반. 전용 칸에 그 성별만의 취향이 드러난다.</p>
+  <div class="duo">
+    <div class="col m">
+      <h3><span class="tag m">남성 전용</span> 25개</h3>
+      <div class="chips">
+        <span class="chip m">Adidas 클럽저지 ×7</span><span class="chip m">Nike ×7</span>
+        <span class="chip m">Palace ×4</span><span class="chip m">Y-3</span><span class="chip m">Puma</span>
+      </div>
+    </div>
+    <div class="col f">
+      <h3><span class="tag f">여성 전용</span> 25개</h3>
+      <div class="chips">
+        <span class="chip f">Stussy ×8</span><span class="chip f">Play CDG ×5</span>
+        <span class="chip f">BAPE ×3</span><span class="chip f">Safarispot ×2</span>
+        <span class="chip f">Human Made</span><span class="chip f">Vivienne Westwood</span><span class="chip f">AMI</span><span class="chip f">Matin Kim</span>
+      </div>
+    </div>
+  </div>
+  <div class="insight"><b>여성 쪽 신규·국내 브랜드 수용성이 높다.</b> Matin Kim·Safarispot(KREAM 단독) 같은 신진이 여성 전용 칸에서만 등장. 선제 소싱 기회는 여성관 쪽에서 먼저 열린다.</div>
+</section>
+
+<!-- 4. 집합 engagement -->
+<section>
+  <div class="secnum">04 — 비교 (집합 단위)</div>
+  <h2>여성이 올리는 상품이 볼륨이 더 크다</h2>
+  <p class="lead">상품 집합이 다르므로 집합 평균 비교는 유효하다. 여성 TOP50은 고볼륨 스테디셀러에 쏠리고, 남성 TOP50은 개별 볼륨 작은 틈새·콜라보가 평균을 끌어내린다.</p>
+  <div class="stat">
+    <div class="sbox m"><div class="big">5,986</div><div class="lab">남성 TOP50 거래 평균</div></div>
+    <div class="sbox f"><div class="big">8,694</div><div class="lab">여성 TOP50 거래 평균</div><div class="delta">+45%</div></div>
+    <div class="sbox m"><div class="big">8,654</div><div class="lab">남성 TOP50 관심 평균</div></div>
+    <div class="sbox f"><div class="big">13,751</div><div class="lab">여성 TOP50 관심 평균</div><div class="delta">+59%</div></div>
+  </div>
+  <div class="insight"><b>주의:</b> 이건 "여성이 더 많이 산다"가 아니다. 같은 상품의 거래 총량은 성별 무관 동일하다. <b>여성 인기순이 띄우는 상품군이 원래 거래·관심이 큰 스테디셀러</b>라는 뜻 — 집합의 성격 차이다.</div>
+</section>
+
+<!-- 5. 순위 역전 -->
+<section>
+  <div class="secnum">05 — 비교</div>
+  <h2>같은 상품, 다른 대접 — 순위 역전</h2>
+  <p class="lead">남녀 모두에 뜨는 공통 상품의 순위 위치 차이. 거래량은 같으니 <b>순위로만</b> 읽어야 유효하다. 한 성별에선 상단, 다른 성별에선 하단.</p>
+  <table>
+    <tr><th>상품</th><th style="text-align:center">남성 순위</th><th style="text-align:center">여성 순위</th><th class="num">격차</th></tr>
+    <tr><td>스투시 월드투어 블랙</td><td style="text-align:center" class="mrank">#46</td><td style="text-align:center" class="frank">#8</td><td class="num">38</td></tr>
+    <tr><td>아이앱 스튜디오 스케치 화이트</td><td style="text-align:center" class="mrank">#10</td><td style="text-align:center" class="frank">#46</td><td class="num">36</td></tr>
+    <tr><td>꼼데가르송 레드하트 화이트</td><td style="text-align:center" class="mrank">#33</td><td style="text-align:center" class="frank">#3</td><td class="num">30</td></tr>
+    <tr><td>스투시 × 아워레가시 피그먼트</td><td style="text-align:center" class="mrank">#15</td><td style="text-align:center" class="frank">#41</td><td class="num">26</td></tr>
+    <tr><td>칼하트 포켓티 네이비</td><td style="text-align:center" class="mrank">#39</td><td style="text-align:center" class="frank">#15</td><td class="num">24</td></tr>
+    <tr><td>스투시 베이직 블랙</td><td style="text-align:center" class="mrank">#21</td><td style="text-align:center" class="frank">#5</td><td class="num">16</td></tr>
+  </table>
+  <div class="insight"><b>스투시·꼼데 하트는 여성 쪽으로, IAB·아워레가시는 남성 쪽으로 기운다.</b> 동일 상품도 성별관 진열 우선순위를 다르게 가져가야 한다는 직접 근거.</div>
+</section>
+
+<!-- 6. 가격대 -->
+<section>
+  <div class="secnum">06 — 종합</div>
+  <h2>볼륨 스위트스팟은 5~9만원</h2>
+  <p class="lead">남녀 합산 100개의 가격대 분포. 5~9만원 구간(스투시·꼼데·IAB)에 가장 많이 몰리고, 양단은 소수 특수 아이템.</p>
+  <div class="pricebar">
+    <div class="pb"><div class="v">10</div><div class="fill" style="height:28%"></div><div class="l">3만<br>미만</div></div>
+    <div class="pb"><div class="v">20</div><div class="fill" style="height:56%"></div><div class="l">3~5만</div></div>
+    <div class="pb"><div class="v">36</div><div class="fill" style="height:100%"></div><div class="l">5~9만</div></div>
+    <div class="pb"><div class="v">18</div><div class="fill" style="height:50%"></div><div class="l">9~13만</div></div>
+    <div class="pb"><div class="v">16</div><div class="fill" style="height:44%"></div><div class="l">13만+</div></div>
+  </div>
+  <div class="insight">상위 20위 평균가는 남 78,450원 · 여 78,050원으로 거의 동일하지만, 남성은 20,000~245,000원으로 <b>콜라보 프리미엄이 상단을 넓게 벌리고</b>, 여성은 특정 브랜드 가격대(7~13만)에 안착하는 구조.</div>
+</section>
+
+<!-- 7. 화제성 -->
+<section>
+  <div class="secnum">07 — 남성정렬 한정 (성별 비교 아님)</div>
+  <h2>찜은 받지만 안 사는 화제성 상품</h2>
+  <p class="lead">관심·리뷰·거래는 남성 파일에서만 3개 다 관찰 가능. 관심 대비 거래가 유난히 낮은 상품 = 화제성은 있으나 지갑은 안 열리는 아이템. <b>※ 카운터가 독립이라 '전환율'이 아니라 '관심 대비 거래 비율'로 읽을 것.</b></p>
+  <table>
+    <tr><th>상품</th><th class="num">관심</th><th class="num">거래</th><th class="num">거래/관심</th></tr>
+    <tr><td>아디다스 스페인 2026 어웨이 저지</td><td class="num">7,362</td><td class="num">1,091</td><td class="num" style="color:var(--f)">15%</td></tr>
+    <tr><td>팔라스 × 나이키 잉글랜드 티</td><td class="num">1,428</td><td class="num">219</td><td class="num" style="color:var(--f)">15%</td></tr>
+    <tr><td>아디다스 × 오아시스 투어 티</td><td class="num">4,437</td><td class="num">835</td><td class="num" style="color:var(--f)">19%</td></tr>
+    <tr><td>Y-3 재팬 홈 레플리카 저지</td><td class="num">2,067</td><td class="num">472</td><td class="num">23%</td></tr>
+    <tr><td>나이키 × 피스마이너스원 숏슬리브</td><td class="num">2,809</td><td class="num">750</td><td class="num">27%</td></tr>
+  </table>
+  <div class="insight"><b>콜라보·국대 어웨이 저지가 전형적인 '찜만 받는' 상품.</b> 화제성으로 노출은 잡지만 재고를 깊게 가져가면 위험. 바잉 깊이를 제한할 후보.</div>
+</section>
+
+<div class="takeaway">
+  <div class="t">BOTTOM LINE</div>
+  <p>같은 '반팔티'라도 남성은 <span style="color:var(--m)">스포츠 저지(46%)</span>, 여성은 <span style="color:var(--f)">하트·로고 그래픽 티</span>로 수요가 갈린다. 성별 신호는 거래 숫자가 아니라 <b>'무엇이 뜨고, 어느 순위에 뜨는가'</b>에 있다 — TOP50의 절반이 성별 전용이고, 순위 역전이 그 취향 차이를 그대로 보여준다.</p>
+</div>
+
+<footer>
+  분석 방법: kkirikkiri Agent Teams — MD/바이어·트렌드 애널리스트·소비자행동 전문가 3인 + 적대 검토(크리틱) 교차검증.<br>
+  데이터 한계로 걸러낸 항목: 남녀 전환율·퍼널 비교(여성 관심/리뷰는 상품 총량이라 성별 분리 불가).<br>
+  투자·구매 권유 아님 · KREAM 인기순 스냅샷 1회 기준 · 시장 전체 대표성 없음.
+</footer>
+
+</div>
+</body>
+</html>
