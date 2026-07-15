@@ -1,0 +1,40 @@
+{
+  "skill_name": "yonori-reels",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "다음 릴스 뭐 올릴지 고민되는데 주제 추천해줘",
+      "expected_output": "프로파일 확인 후 트렌드 캐시/검색 기반 후보 3~5개를 루브릭 점수·예상 훅과 함께 제시하고 사용자 선택을 받는다",
+      "should_trigger": true,
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "홍콩 디즈니 20주년 갔다온 거 릴스 대본 써줘",
+      "expected_output": "tone-profile 참조, 9컬럼 타이밍표 + 반말 나레이션 + 리텐션 6장치 체크 + 해요체 캡션을 script.md로 저장",
+      "should_trigger": true,
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "clips 폴더에 찍어온 영상 있는데 이걸로 릴스 만들어줘",
+      "expected_output": "클립 개수 확인 → 장면-클립 매핑 확인 → manifest.json 작성 → build_reel.py 실행 → 1080x1920 mp4 출력",
+      "should_trigger": true,
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "부산 2박3일 여행 코스 짜줘",
+      "expected_output": "yonori-reels가 아니라 trip-advisor 스킬이 처리해야 한다",
+      "should_trigger": false,
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "인스타 팔로워 늘리는 방법 알려줘",
+      "expected_output": "일반 질문 — 릴스 제작 파이프라인을 트리거하지 않는다",
+      "should_trigger": false,
+      "files": []
+    }
+  ]
+}
