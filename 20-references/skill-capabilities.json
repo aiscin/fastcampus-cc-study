@@ -1,0 +1,45 @@
+{
+  "$comment": "스킬 능력 매니페스트 — 설계도 G-C(복사 게이트)·G-G(실행 게이트)가 소비하는 원장. '이 스킬이 무슨 위험 능력을 갖는가'를 선언한다. 신규 스킬은 skillers-suda로 만들 때 이 파일에 한 줄 추가한다(CLAUDE.md '플러그인·스킬 운영 규칙' 참조).",
+  "schema_version": "1.0",
+  "generated": "2026-07-08",
+  "capability_flags": {
+    "external_send": "데이터를 외부 서비스로 내보내거나 발행(비가역) — 게이트 필요",
+    "billing": "호출 시 과금(유료 API) — 게이트 필요",
+    "pii": "개인정보·사생활 데이터에 접근(메일·사적 녹음 등)",
+    "delete": "파일 삭제 등 파괴적 조작",
+    "scraping": "봇 차단 우회 스크래핑(TLS 위장·yt-dlp 등)",
+    "network_read": "외부 API 읽기 호출(비파괴)"
+  },
+  "risk_capabilities": ["external_send", "billing", "delete"],
+  "policy": {
+    "auto_invoke_rule": "risk_capabilities 중 하나라도 가지면 자동발동을 끄고(명시 호출만) 실행 직전 게이트를 건다. 안전 능력만 있으면 description 그대로 자동발동 허용.",
+    "manifest_owner": "skillers-suda(신규) + 이 파일(기존 소급)"
+  },
+  "skills": [
+    {"name": "audio-to-doc",     "capabilities": ["external_send", "billing", "pii", "scraping"], "auto_invoke": true, "note": "오디오가 Google(Gemini)로 전송·과금. 대외비는 사전 확인 필수 — 자동발동은 유지하되 전송 전 확인 프롬프트 권장."},
+    {"name": "content-pipeline", "capabilities": ["network_read", "scraping"],                    "auto_invoke": true, "note": "딥리서치 후 로컬 이미지·HTML 발행(외부 전송 아님)."},
+    {"name": "daily-news",       "capabilities": ["network_read"],                                "auto_invoke": true, "note": "네이버 검색 API 읽기 전용."},
+    {"name": "deep-research",    "capabilities": ["network_read", "scraping"],                    "auto_invoke": true, "note": "웹 검색·본문 수집(읽기). 플러그인 deep-research와 동명 — 로컬 사본."},
+    {"name": "fashion-trend",    "capabilities": ["network_read", "scraping"],                    "auto_invoke": true, "note": "KREAM curl_cffi TLS 위장 스크래핑."},
+    {"name": "idea-shaper",      "capabilities": [],                                              "auto_invoke": true, "note": "로컬 대화·기획. 위험 능력 없음."},
+    {"name": "ideation-funnel",  "capabilities": [],                                              "auto_invoke": true, "note": "로컬 대화·기획. 위험 능력 없음."},
+    {"name": "morning-briefing", "capabilities": ["pii", "network_read"],                         "auto_invoke": true, "note": "Gmail·Calendar 사적 데이터 읽기(gws CLI). 발송은 안 함 — 읽기만."},
+    {"name": "naver-news",       "capabilities": ["external_send", "network_read"],               "auto_invoke": false, "note": "뉴스레터를 외부 발행(GitHub Actions). 발행이 비가역 → 자동발동 차단·명시 호출만."},
+    {"name": "trip-advisor",     "capabilities": ["network_read", "scraping"],                    "auto_invoke": true, "note": "TourAPI 읽기 + 블로그·유튜브 수집."},
+    {"name": "yonori-reels",     "capabilities": ["external_send"],                               "auto_invoke": false, "note": "인스타 발행(비가역). 자동발동 차단·명시 호출만. 영상은 원본 사본만 사용(삭제 아님)."},
+    {"name": "part02-start",     "capabilities": [], "auto_invoke": true, "note": "강의 가이드. 위험 능력 없음."},
+    {"name": "part03-experience","capabilities": [], "auto_invoke": true, "note": "강의 가이드. 위험 능력 없음."},
+    {"name": "part04-strengthen","capabilities": [], "auto_invoke": true, "note": "강의 가이드. 위험 능력 없음."},
+    {"name": "part05-disassemble","capabilities": [],"auto_invoke": true, "note": "강의 가이드. 위험 능력 없음."},
+    {"name": "part06-skill-craft","capabilities": [],"auto_invoke": true, "note": "강의 가이드. 위험 능력 없음."},
+    {"name": "part07-realworld", "capabilities": [], "auto_invoke": true, "note": "강의 가이드. 위험 능력 없음."}
+  ],
+  "plugin_skills_inherited": {
+    "$comment": "마켓플레이스 플러그인은 복사 없이 전역 상속 → G-C(복사 게이트) 밖. 자식 워크스페이스를 찍을 때 로드아웃에 없으면 settings.json permissions deny로 스탬프해야 한다(설계도 v3.2 참조).",
+    "nopal": ["external_send", "pii", "billing"],
+    "skillers-suda": ["billing"],
+    "deep-research-plugin": ["network_read", "scraping", "billing"],
+    "git-teacher": ["external_send"],
+    "insane-search": ["scraping", "network_read"]
+  }
+}

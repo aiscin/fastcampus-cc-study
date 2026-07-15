@@ -1,0 +1,304 @@
+<meta charset="utf-8" />
+<title>강한 모델로 다른 모델을 똑똑하게 · 핸드북</title>
+<style>
+  :root {
+    --bg:#F5F6F8; --surface:#FFFFFF; --surface-2:#FBFBFC;
+    --ink:#191C22; --muted:#5C6470; --border:#E4E7EC;
+    --accent:#B7791F; --accent-ink:#8A5A12; --accent-soft:#F4EAD6;
+    --gA:#2F9E6B; --gA-bg:#E6F4EC; --gB:#3B82A6; --gB-bg:#E4F0F5;
+    --gC:#B98526; --gC-bg:#F6ECD8; --gD:#C4713A; --gD-bg:#F6E7DB; --gE:#C4574F; --gE-bg:#F6E2E0;
+    --shadow:0 1px 2px rgba(20,24,32,.04), 0 8px 24px rgba(20,24,32,.05);
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,"D2Coding",monospace;
+    --sans:system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#0E1217; --surface:#151A21; --surface-2:#1A2029;
+      --ink:#E7EAF0; --muted:#98A2B2; --border:#262E39;
+      --accent:#E0A63E; --accent-ink:#EBB863; --accent-soft:#2A2417;
+      --gA:#4CBF89; --gA-bg:#16241D; --gB:#5AA6C8; --gB-bg:#152430;
+      --gC:#D6A24A; --gC-bg:#2A2417; --gD:#DC8A54; --gD-bg:#2B2015; --gE:#DE756C; --gE-bg:#2C1A19;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#F5F6F8; --surface:#FFFFFF; --surface-2:#FBFBFC; --ink:#191C22; --muted:#5C6470; --border:#E4E7EC;
+    --accent:#B7791F; --accent-ink:#8A5A12; --accent-soft:#F4EAD6;
+    --gA:#2F9E6B; --gA-bg:#E6F4EC; --gB:#3B82A6; --gB-bg:#E4F0F5; --gC:#B98526; --gC-bg:#F6ECD8;
+    --gD:#C4713A; --gD-bg:#F6E7DB; --gE:#C4574F; --gE-bg:#F6E2E0;
+    --shadow:0 1px 2px rgba(20,24,32,.04), 0 8px 24px rgba(20,24,32,.05);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0E1217; --surface:#151A21; --surface-2:#1A2029; --ink:#E7EAF0; --muted:#98A2B2; --border:#262E39;
+    --accent:#E0A63E; --accent-ink:#EBB863; --accent-soft:#2A2417;
+    --gA:#4CBF89; --gA-bg:#16241D; --gB:#5AA6C8; --gB-bg:#152430; --gC:#D6A24A; --gC-bg:#2A2417;
+    --gD:#DC8A54; --gD-bg:#2B2015; --gE:#DE756C; --gE-bg:#2C1A19;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;-webkit-font-smoothing:antialiased;font-size:15.5px}
+  .wrap{max-width:880px;margin:0 auto;padding:0 22px 88px}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);font-weight:600}
+  h1{font-size:2.05rem;line-height:1.12;letter-spacing:-.02em;font-weight:680;margin:.35em 0 .2em;text-wrap:balance}
+  h2{font-size:1.32rem;letter-spacing:-.01em;font-weight:670;margin:0 0 .1em;text-wrap:balance}
+  h3{font-size:1.02rem;font-weight:660;margin:0}
+  p{margin:.5em 0}
+  a{color:var(--accent-ink);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
+  a:hover{border-bottom-color:var(--accent)}
+  code{font-family:var(--mono);font-size:.86em;background:var(--surface-2);border:1px solid var(--border);
+    border-radius:5px;padding:.06em .4em}
+  /* header */
+  header.top{padding:56px 0 30px;border-bottom:1px solid var(--border);position:relative}
+  .thesis{font-size:1.12rem;color:var(--ink);max-width:60ch;margin-top:.4em}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:20px;font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.02em}
+  .toggle{position:absolute;top:20px;right:0;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    background:var(--surface);border:1px solid var(--border);color:var(--muted);border-radius:999px;
+    padding:7px 13px;cursor:pointer}
+  .toggle:hover{color:var(--ink);border-color:var(--accent)}
+  section{padding-top:44px}
+  .sec-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  /* principle callout */
+  .principle{margin-top:26px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);
+    border-radius:12px;padding:18px 22px;box-shadow:var(--shadow)}
+  .principle .big{font-size:1.14rem;font-weight:640;letter-spacing:-.01em}
+  /* cards grid */
+  .cards{display:grid;grid-template-columns:1fr;gap:14px;margin-top:8px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow)}
+  .card .tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+  .card h3{margin-bottom:2px}
+  .prio{color:var(--accent);letter-spacing:.1em}
+  .kv{display:grid;grid-template-columns:76px 1fr;gap:6px 14px;margin-top:12px}
+  .kv dt{font-family:var(--mono);font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding-top:2px}
+  .kv dd{margin:0}
+  /* grade chips */
+  .g{display:inline-flex;align-items:center;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.03em;
+    border-radius:6px;padding:2px 7px;white-space:nowrap}
+  .gA{color:var(--gA);background:var(--gA-bg)} .gB{color:var(--gB);background:var(--gB-bg)}
+  .gC{color:var(--gC);background:var(--gC-bg)} .gD{color:var(--gD);background:var(--gD-bg)} .gE{color:var(--gE);background:var(--gE-bg)}
+  /* tables */
+  .tw{overflow-x:auto;border:1px solid var(--border);border-radius:12px;margin-top:16px;box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:520px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+  thead th{background:var(--surface-2);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:var(--surface-2)}
+  .num{font-variant-numeric:tabular-nums;font-family:var(--mono)}
+  /* decision list */
+  .flow{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+  .flow .row{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:baseline;background:var(--surface);
+    border:1px solid var(--border);border-radius:10px;padding:12px 16px}
+  .flow .when{font-family:var(--mono);font-size:12px;color:var(--accent-ink);white-space:nowrap;font-weight:600}
+  /* highlight (hook verdict) */
+  .verdict{margin-top:22px;background:linear-gradient(180deg,var(--accent-soft),var(--surface));
+    border:1px solid color-mix(in srgb,var(--accent) 35%,var(--border));border-radius:16px;padding:24px 24px 8px;box-shadow:var(--shadow)}
+  .verdict .stamp{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);font-weight:700}
+  .verdict .headline{font-size:1.16rem;font-weight:660;margin:.25em 0 .1em;letter-spacing:-.01em}
+  .ok{color:var(--gA);font-weight:700} .warn{color:var(--gD);font-weight:700}
+  /* recipe */
+  .recipe{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-top:12px;box-shadow:var(--shadow)}
+  .recipe .n{font-family:var(--mono);color:var(--accent);font-weight:700;font-size:12px}
+  ul.tight{margin:.4em 0;padding-left:1.15em} ul.tight li{margin:.28em 0}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .legend .g{font-size:11px}
+  .limit li{margin:.4em 0}
+  footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--border);font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.02em}
+  @media (max-width:560px){
+    h1{font-size:1.7rem} .kv{grid-template-columns:1fr} .kv dt{padding-top:8px}
+    .flow .row{grid-template-columns:1fr} .toggle{position:static;margin-bottom:8px}
+    header.top{padding-top:30px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <button class="toggle" id="tt" aria-label="테마 전환">◑ THEME</button>
+    <div class="eyebrow">LLM Orchestration · Field Handbook</div>
+    <h1>강한 모델로 다른 모델을 똑똑하게</h1>
+    <p class="thesis">강한 모델(Fable&nbsp;5)을 <strong>상시로 돌리지 말고</strong>, 판단·설계·검증 같은 비싼 순간에만 쓰고 나머지 실행은 싼 모델에 맡긴다 — X에서 도는 노하우들의 공통 뼈대를 실전 매뉴얼로 정리했다.</p>
+    <div class="meta">
+      <span>작성 2026-07-09</span><span>리서치 deep-research v3</span><span>적용: Claude Code + API</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-label">01 · 한 문장 원칙</div>
+    <div class="principle">
+      <div class="big">비싼 모델은 <span style="color:var(--accent-ink)">판단</span>에, 싼 모델은 <span style="color:var(--accent-ink)">실행</span>에.</div>
+      <p style="margin-bottom:0;color:var(--muted)">지능은 결정점에만 몰아준다. 위임 지시는 구체적으로, 확신도는 실측으로, 반복은 코드로, 자산은 한 번 잘 만들어 복리로.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">02 · 4가지 패턴 지도</div>
+    <div class="tw">
+      <table>
+        <thead><tr><th>패턴</th><th>한 줄 정의</th><th>강 모델 역할</th><th>효과(근거)</th><th>신뢰도</th></tr></thead>
+        <tbody>
+          <tr><td><strong>① 어드바이저 위임</strong></td><td>싼 모델이 막히면 강 모델에게 “훈수”만</td><td>결정점에서 계획·교정</td><td class="num">점수 19.7→41.2%, 85%↓*</td><td><span class="g gA">A</span> <span class="g gC">C*</span></td></tr>
+          <tr><td><strong>② 오케스트레이터-워커</strong></td><td>강 모델이 계획 세워 서브에이전트 병렬 분배</td><td>총괄 지휘관</td><td class="num">+90.2% / 토큰 ~15×</td><td><span class="g gA">A</span><span class="g gB">B</span></td></tr>
+          <tr><td><strong>③ 라우팅·캐스케이드</strong></td><td>쉬운 건 싼 모델, 어려운 것만 강 모델로</td><td>어려운 케이스 전담</td><td class="num">품질 95% 유지·비용 45~85%↓</td><td><span class="g gB">B</span><span class="g gC">C</span></td></tr>
+          <tr><td><strong>④ 자산 생성</strong></td><td>강 모델이 프롬프트·규칙·예시·eval 제작</td><td>스캐폴딩 제작자</td><td class="num">소형 모델 +4~6점</td><td><span class="g gB">B</span><span class="g gC">C</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:var(--muted);font-size:13px">* 어드바이저의 “19.7→41.2%·85%↓”는 3rd-party 요약 기준(C). 패턴 존재·작동은 공식 문서(A).</p>
+  </section>
+
+  <section>
+    <div class="sec-label">03 · 이럴 땐 이 패턴</div>
+    <div class="flow">
+      <div class="row"><span class="when">막힐 때 / 설계 결정</span><span>→ <strong>① 어드바이저</strong>. 실행은 싼 모델, 결정점만 Fable에게 물어본다.</span></div>
+      <div class="row"><span class="when">넓게 훑는 리서치</span><span>→ <strong>② 오케스트레이터</strong>. 병렬 서브에이전트. 단, 코딩·강한 의존 작업엔 비추.</span></div>
+      <div class="row"><span class="when">요청량 많은 서비스</span><span>→ <strong>③ 라우팅·캐스케이드</strong>. 쉬운 건 싼 모델로 흘리고 어려운 것만 승격.</span></div>
+      <div class="row"><span class="when">반복 작업 세팅</span><span>→ <strong>④ 자산 생성</strong>. Fable로 프롬프트·CLAUDE.md·스킬·eval을 구워둔다. (한 번 이득이 계속)</span></div>
+    </div>
+    <p style="color:var(--muted);font-size:13px">개인 활용 우선순위: <strong>④ → ① → ② → ③</strong></p>
+  </section>
+
+  <section>
+    <div class="sec-label">04 · 패턴별 매뉴얼</div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="tag"><span>Pattern / Advisor</span><span class="prio">★ 최우선 · 즉시 체감</span><span class="g gA">패턴 A</span></div>
+        <h3>① 어드바이저 위임 — 작은 실행자 + 큰 조언자</h3>
+        <dl class="kv">
+          <dt>뭐냐</dt><dd>싼·빠른 <strong>실행자</strong>(Haiku/Sonnet)가 일하다 방향 결정·반복 에러·최종 검토 순간에만 강한 <strong>조언자</strong>(Fable&nbsp;5/Opus)에게 전체 맥락을 넘겨 계획·교정을 받는다. 토큰 대부분은 싼 값, 품질은 강 모델 근접.</dd>
+          <dt>규칙</dt><dd>조언자는 실행자보다 <strong>같거나 더 똑똑</strong>해야(최소 Sonnet 4.6, 최상 Fable 5). 예: 실행자 Haiku 4.5 → 조언자 <code>claude-fable-5</code>. 호출 시점은 모델이 결정.</dd>
+          <dt>어떻게</dt><dd>API: top-level <code>model</code>=싼 실행자, 툴 내부 <code>model</code>=강 조언자, 베타 <code>advisor-tool-2026-03-01</code>. · Claude Code: 평소 싼 모델로 작업하다 “막혔어요”/설계 순간에만 강 세션·서브에이전트에 계획을 묻고 실행에 반영(내 <code>/stuck</code> 흐름과 결합).</dd>
+          <dt>근거</dt><dd>Haiku+Opus조언 점수 2배↑(19.7→41.2%), Sonnet 단독보다 85%↓ <span class="g gC">C*</span> · 패턴·모델호환·튜닝(nudge +7%p)은 공식 <span class="g gA">A</span></dd>
+        </dl>
+      </div>
+
+      <div class="card">
+        <div class="tag"><span>Pattern / Asset-Gen</span><span class="prio">★ 복리 효과</span><span class="g gB">패턴 B/C</span></div>
+        <h3>④ 자산 생성 — 강 모델이 스캐폴딩을 “제작”</h3>
+        <dl class="kv">
+          <dt>뭐냐</dt><dd>강 모델을 매번 추론에 쓰지 말고, 재사용 <strong>자산</strong>을 미리 굽는다: ① 시스템 프롬프트(구조 우선=메타프롬프팅) ② few-shot·합성 예시 ③ eval·채점 기준 ④ <strong>CLAUDE.md·스킬·커맨드</strong>.</dd>
+          <dt>왜 좋아</dt><dd>④가 내 상황에 가장 직접적 — Fable로 규칙 문서를 정교하게 써두면 이후 싼 모델로 돌려도 워크스페이스가 똑똑하게 동작. 합성 예시로 소형 모델 +4~6점, 좁은 태스크선 교사 추월 사례도.</dd>
+          <dt>어떻게</dt><dd>Fable 세션에 “이 반복작업용 시스템 프롬프트 + 실패 예시 3개 + 검증 체크리스트”를 통째로 뽑아 <code>.claude/skills/</code>·<code>CLAUDE.md</code>에 박기. <code>skillers-suda</code> 풀 모드(eval 서브에이전트)가 이걸 자동화한 형태. 결정론 반복은 Fable로 스크립트 짜 <code>scripts/</code>로 분리.</dd>
+        </dl>
+      </div>
+
+      <div class="card">
+        <div class="tag"><span>Pattern / Orchestrator</span><span class="prio">무거운 리서치용</span><span class="g gA">패턴 A/B</span></div>
+        <h3>② 오케스트레이터-워커 (멀티에이전트)</h3>
+        <dl class="kv">
+          <dt>뭐냐</dt><dd>강한 <strong>리드</strong>가 질문을 쪼개 계획하고, 각자 <strong>독립 컨텍스트</strong>의 서브에이전트를 병렬로 띄워 분담시킨 뒤 결과를 합친다. 리드는 직접 일 안 하고 계획·분배·통합만.</dd>
+          <dt>핵심</dt><dd>위임 지시를 <strong>구체적으로</strong>(목표·출력형식·도구·경계). 막연하면 중복·누락. 복잡도별 규모: 단순 1명 / 비교 2~4명 / 복잡 10명+. 3~5개 동시 실행.</dd>
+          <dt>피할 때</dt><dd>에이전트 간 강한 의존·공유 맥락, <strong>대부분의 코딩</strong>, 실시간 조율.</dd>
+          <dt>근거</dt><dd>리드 Opus4+서브 Sonnet4가 단일 Opus4 대비 <strong>+90.2%</strong>, 단 채팅 대비 <strong>~15배 토큰</strong>(Anthropic) <span class="g gA">A</span><span class="g gB">B</span></dd>
+        </dl>
+      </div>
+
+      <div class="card">
+        <div class="tag"><span>Pattern / Routing</span><span class="prio">서비스·API용</span><span class="g gB">패턴 B/C</span></div>
+        <h3>③ 라우팅 &amp; 캐스케이드 (비용 최적화)</h3>
+        <dl class="kv">
+          <dt>뭐냐</dt><dd><strong>라우팅</strong>=요청을 선분류해 쉬운 건 싼 모델·어려운 건 강 모델로 한 번에. <strong>캐스케이드</strong>=제일 싼 모델부터 시도 후 확신 낮으면 강 모델로 승격.</dd>
+          <dt>함정</dt><dd>① 자기 확신도는 부정확 → 내 데이터로 임계값 실측. ② 승격률 40% 넘으면 오버헤드 손해. ③ 캐스케이드 지연은 실시간엔 불리, 비동기엔 유리.</dd>
+          <dt>근거</dt><dd>품질 95% 유지하며 비용 45~85%↓(RouteLLM: GPT-4를 14%만 써도 95% 달성) <span class="g gB">B</span><span class="g gC">C</span></dd>
+        </dl>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">05 · 타사 혼합 라우팅 (Claude + GPT + Gemini) — 심화</div>
+    <p>2026 현재 최고 성과 팀은 한 곳에 락인하지 않고 업무별로 갈아탄다. 모델별 “성향”(벤치 편차 크니 확정은 내 데이터로 실측):</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>업무 성향</th><th>강한 쪽</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr><td>코딩·에이전트·긴 신중한 추론</td><td><strong>Claude</strong></td><td>하드 리더보드 강세</td></tr>
+          <tr><td>순수 추론·수학·과학(스텝바이스텝)</td><td><strong>GPT o-series</strong></td><td>딥 추론</td></tr>
+          <tr><td>최장 컨텍스트(1M)·멀티모달·최상위 가성비</td><td><strong>Gemini</strong></td><td>코드베이스 통째로</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cards" style="margin-top:16px">
+      <div class="card"><div class="tag"><span>Tool / call-it</span></div><h3>OpenRouter</h3>
+        <p style="margin-bottom:0">API 하나로 300+ 모델. <code>openrouter/auto</code>가 프롬프트별 최적 모델 선택(Not Diamond·비용/품질 0~10 다이얼). 폴백=프로바이더 자동 + <code>models</code> 배열. <strong>실패 요청 무과금.</strong></p></div>
+      <div class="card"><div class="tag"><span>Tool / host-it</span></div><h3>LiteLLM</h3>
+        <p style="margin-bottom:0">자체 호스팅 프록시. 로드밸런싱·폴백체인·감사로그·지출관리. 팀·거버넌스용.</p></div>
+      <div class="card"><div class="tag"><span>Tool / Claude Code</span><span class="prio">★ 내 상황에 직접</span></div><h3>Claude Code Router</h3>
+        <p style="margin-bottom:0">로컬 프록시 + <code>config.json</code> 슬롯 매핑. 배경작업→싼 모델, 코딩→Sonnet, 복잡추론→Opus를 <strong>수동 /model 없이 자동</strong> 분배.</p></div>
+    </div>
+    <p style="margin-top:16px"><strong>폴백·페일오버 규칙</strong>(운영, <span class="g gC">C</span>): 상태코드 기반(429→즉시 타 프로바이더 · 500→재시도 · 가드레일 위반→대체 모델) · 지연 임계 헤징(2초 안 오면 백업 동시 요청, 먼저 온 것 사용) · 프로액티브 분산(70/30) · 조건부 라우팅(저우선=싼 모델).</p>
+  </section>
+
+  <section>
+    <div class="sec-label">06 · 당신의 질문에 답</div>
+    <div class="verdict">
+      <div class="stamp">Q → 업무별로 모델을 자동 지정하는 “훅”을 추가하면?</div>
+      <div class="headline">방향은 정확히 맞다. 단, ‘전환’은 훅이 아니라 라우터/서브에이전트로, ‘검증’은 오프라인 eval로.</div>
+      <p>업무→최적모델 매칭은 <strong>라우팅 그 자체</strong>라 좋은 직관입니다. 다만 Claude Code <strong>훅</strong>은 세션 모델을 태스크마다 바꾸지 못합니다(훅=컨텍스트 주입·차단·조언·로깅용). ‘지정’은 다른 도구가 맡아야 합니다.</p>
+      <div class="tw" style="box-shadow:none">
+        <table>
+          <thead><tr><th>원한 것</th><th>훅으로 되나?</th><th>올바른 도구</th></tr></thead>
+          <tbody>
+            <tr><td>업무 <strong>분류</strong> (이건 긴문서 / 저건 코딩)</td><td><span class="ok">✔ 됨</span></td><td>UserPromptSubmit 훅 (분류·조언 주입 + 로깅)</td></tr>
+            <tr><td>모델 <strong>전환/지정</strong></td><td><span class="warn">△ 훅 불가</span></td><td>Claude Code Router · 서브에이전트 <code>model</code> 핀 · (API) LiteLLM/OpenRouter</td></tr>
+            <tr><td>적합한지 <strong>검증</strong></td><td><span class="warn">△ 실시간 부정확</span></td><td>오프라인 eval 게이트 50~500케이스(규칙 정할 때 1회)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-bottom:18px"><strong>권장 하이브리드</strong> — 훅은 <em>“이 일엔 이 모델이 좋겠다”고 알려주고 로깅</em>, 실제 <em>태우는</em> 건 라우터/서브에이전트, 그 규칙이 맞는지는 <em>eval로 한 번 검증</em>. 싼 모델로 바꿀 때의 “조용한 품질 저하(silent quality regression)”가 숨은 세금이라, 검증 없이 라우팅부터 넣지 말 것. <span style="color:var(--muted)">(‘훅 불가’는 현재 이해 — Part 05 Hook 클립/공식 문서로 확인 권장)</span></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">07 · 내 워크스페이스 적용 레시피</div>
+    <div class="recipe"><span class="n">R1</span> <strong>“막힐 때만 Fable”</strong> — 평소 작업은 기본 모델, 설계 결정·반복 에러·최종 검토 순간에만 Fable에게 계획을 물어 실행에 반영. <code>/stuck</code>과 결합. (패턴 ①)</div>
+    <div class="recipe"><span class="n">R2</span> <strong>“자산을 Fable로 굽는다”</strong> — 새 스킬·커맨드·CLAUDE.md는 항상 Fable로 초안+실패예시+eval을 함께 뽑아 박아둔다. <code>skillers-suda</code> 풀 모드가 자동화판. (패턴 ④)</div>
+    <div class="recipe"><span class="n">R3</span> <strong>“지정은 라우터·서브에이전트로”</strong> — Claude Code Router <code>config.json</code>으로 배경=싼 모델/코딩=Sonnet/설계=Fable 자동 분배. 또는 서브에이전트에 <code>model</code>을 직접 핀(“리서치=싼모델, 설계=Fable”). (패턴 ③ + 당신의 아이디어)</div>
+    <div class="recipe"><span class="n">R4</span> <strong>“검증은 다른 눈으로”</strong> — 라우팅 규칙 넣기 전 eval 50~500케이스로 1회 검증. 산출물 품질이 중요하면 만든 모델과 다른 세션/모델로 교차 검토(fresh context 검증자). (패턴 ②·④)</div>
+  </section>
+
+  <section>
+    <div class="sec-label">08 · 신뢰도 · 출처 · 한계</div>
+    <div class="legend">
+      <span class="g gA">A 공식·1차</span><span class="g gB">B 신뢰 매체/논문</span><span class="g gC">C 실무 블로그</span><span class="g gD">D 홍보</span><span class="g gE">E 일화/SNS</span>
+    </div>
+    <div class="tw">
+      <table>
+        <thead><tr><th>출처</th><th>유형</th><th>등급</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool">Claude 공식 — Advisor tool 문서</a></td><td>공식 1차(본문 fetch)</td><td><span class="g gA">A</span></td></tr>
+          <tr><td>내장 <code>claude-api</code> 스킬(어드바이저·서브에이전트·fallbacks)</td><td>내부 1차 문서</td><td><span class="g gA">A</span></td></tr>
+          <tr><td><a href="https://www.anthropic.com/engineering/multi-agent-research-system">Anthropic — Multi-agent research system</a></td><td>공식 엔지니어링(자사 eval)</td><td><span class="g gA">A</span><span class="g gB">B</span></td></tr>
+          <tr><td><a href="https://github.com/lm-sys/RouteLLM">RouteLLM (UC버클리, ICLR 2025)</a></td><td>논문·오픈소스</td><td><span class="g gB">B</span></td></tr>
+          <tr><td><a href="https://openrouter.ai/blog/insights/model-routing/">OpenRouter — Model Routing</a></td><td>벤더 기술 블로그(fetch)</td><td><span class="g gB">B</span><span class="g gC">C</span></td></tr>
+          <tr><td><a href="https://portkey.ai/blog/failover-routing-strategies-for-llms-in-production/">Portkey — Failover routing</a> · <a href="https://tianpan.co/blog/2025-11-03-llm-routing-model-cascades">TianPan — Routing &amp; Cascades</a> · <a href="https://techsy.io/en/blog/claude-code-use-different-models">Techsy — Claude Code Router</a></td><td>실무 블로그(fetch)</td><td><span class="g gC">C</span></td></tr>
+          <tr><td><a href="https://www.promptingguide.ai/techniques/meta-prompting">Prompting Guide — Meta prompting</a> · <a href="https://arxiv.org/html/2412.09807v1">arXiv 2412.09807 (distillation few-shot)</a></td><td>가이드·논문</td><td><span class="g gC">C</span></td></tr>
+          <tr><td>어드바이저 구체 수치(19.7→41.2%·85%↓) 요약 블로그</td><td>실무 블로그(스니펫)</td><td><span class="g gC">C</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:22px"><strong>한계</strong> (정보 기준 <span class="num">2026-07-09</span>):</p>
+    <ul class="tight limit">
+      <li>어드바이저 툴은 <strong>베타</strong>(<code>advisor-tool-2026-03-01</code>) — 파라미터·모델 호환이 바뀔 수 있음, 적용 전 최신 문서 재확인.</li>
+      <li>구체 수치는 <strong>태스크 의존</strong>. 특히 “19.7→41.2%·85%↓”는 3rd-party 요약 기준 — <strong>내 워크로드에서 직접 측정</strong> 필요.</li>
+      <li>멀티에이전트 90.2%·15배는 Anthropic <strong>자사 리서치 eval</strong> 기준 — 일반 코딩/대화엔 그대로 적용 안 됨(자사도 코딩엔 부적합 명시).</li>
+      <li>라우팅 절감 45~85%는 벤치별 편차 큼 → 참고치. distillation 수치는 파인튜닝·오픈소스 소형모델 대상 연구.</li>
+      <li>“훅으로 모델 전환 불가”는 현재 이해 — Part 05 Hook 클립/공식 문서로 검증 권장.</li>
+    </ul>
+  </section>
+
+  <footer>강한 모델로 다른 모델을 똑똑하게 · 핸드북 · deep-research v3 · 2026-07-09 · 원본 리서치 보고서·노트는 같은 폴더의 .md 참조</footer>
+</div>
+
+<script>
+  (function(){
+    var btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var root=document.documentElement;
+      var cur=root.getAttribute('data-theme');
+      var dark=cur?cur==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+      root.setAttribute('data-theme',dark?'light':'dark');
+    });
+  })();
+</script>

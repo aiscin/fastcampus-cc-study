@@ -38,6 +38,31 @@ Part 05에서 인터뷰를 통해 나만의 CLAUDE.md를 만들게 됩니다.
 
 ---
 
+## 플러그인·스킬 운영 규칙 ★
+
+> 마켓플레이스 플러그인(skillers-suda·deep-research 등)은 좋지만 **내 워크스페이스 규칙을 모른다.**
+> 아래 규칙으로 덧씌워, 반복작업 때마다 손보는 수고를 없앤다. (플러그인 파일은 업데이트 때 날아가므로 직접 고치지 않는다.)
+
+### deep-research
+
+- **출력 위치**: 결과는 현재 폴더가 아니라 **`50-my-work/Part{NN}-.../실습{NN}-.../`** 아래로 저장한다. 실습 맥락이 아니면 `50-my-work/_research/{주제}_{날짜}/`.
+- **인터뷰 건너뛰기**: 반복하는 리서치는 매번 4문항 인터뷰를 받지 말고 **쿼리 프로파일**을 쓴다 — `30-templates/research-profiles/`에 `시장동향·기술비교·이슈추적` 3종. 자리표시자(TOPIC 등)만 바꿔 넣으면 Phase 1을 건너뛴다.
+- **인용 검증**: Phase 6(품질 확인)에서 "링크 다 살아있다"고 말로만 넘기지 말고 **실측**한다 —
+  `python3 20-references/tools/verify_citations.py <보고서폴더> --sources <sources.jsonl>`. 깨진 링크·고아 출처·미등록 인용을 잡는다.
+
+### skillers-suda
+
+- **이중 저장**: 스킬을 만들면 활성 위치 **`.claude/skills/{이름}/`** + 포트폴리오 사본 **`50-my-work/실습NN-.../skill-source/`** 양쪽에 둔다(강의 규칙).
+- **능력 매니페스트**: 새 스킬을 만들면 `20-references/skill-capabilities.json`에 한 줄 추가한다 — 능력 플래그(external_send/billing/delete/pii/scraping/network_read)와 auto_invoke. **위험 능력(외부발송·과금·삭제)이 있으면 자동발동을 끈다.**
+- **라이트/풀 모드**: 시작할 때 먼저 물어본다 — **라이트**(4관점 분석 + 파일 생성, eval 생략)냐 **풀**(eval 서브에이전트 + description 최적화 루프까지). 풀은 비싸므로 큰 개편일 때만.
+- **기존 스킬 점검**: 이미 만든 스킬을 손볼 땐 무거운 풀 파이프라인 대신 **`/skill-checkup [스킬]`**(가벼운 4관점 정적 점검)을 쓴다.
+
+### 자식 워크스페이스를 찍을 때 (Part 07 빌더)
+
+- 마켓플레이스 플러그인은 복사 없이 **전역 상속**되어 능력 게이트를 우회한다. 자식 워크스페이스 로드아웃에 없는 플러그인(특히 nopal·git-teacher처럼 외부발송 능력)은 자식의 `.claude/settings.json` permissions **deny로 스탬프**한다. (설계도 v3.2 참조)
+
+---
+
 ## 폴더 구조
 
 10단위 넘버링 — 직관적이고 일관됨.

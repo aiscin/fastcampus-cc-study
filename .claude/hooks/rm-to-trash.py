@@ -5,9 +5,10 @@
 - 위험 경로(/, ~, /mnt 등)나 복잡한 명령은 안전하게 차단
 원래 rm은 항상 막는다(이미 휴지통으로 옮겼으므로).
 """
-import sys, json, os, shlex, glob, subprocess, datetime, shutil
+import sys, json, os, re, shlex, glob, subprocess, datetime, shutil
 
-META = ['|', ';', '&', '`', '$(', '>', '<', '\n']
+# rm 세그먼트 안에 있으면 자동 휴지통 처리가 위험한 문자 (파이프·리다이렉트·치환·백그라운드)
+UNSAFE = ['|', '`', '$(', '>', '<', '&']
 DANGEROUS = {'/', '/mnt', '/mnt/c', '/mnt/d', '/home', '/usr', '/etc', '/root',
              os.path.expanduser('~')}
 
@@ -46,25 +47,36 @@ def main():
 
     cmd = (data.get("tool_input") or {}).get("command", "")
     cwd = data.get("cwd") or os.getcwd()
-    has_meta = any(m in cmd for m in META)
 
-    try:
-        tokens = shlex.split(cmd.strip())
-    except Exception:
-        tokens = []
-
-    # rm이 첫 토큰이 아니면: 복합 명령 속에 rm이 숨어있고 메타문자까지 있으면 차단, 아니면 통과
-    if not tokens or tokens[0] != 'rm':
-        if ' rm ' in (' ' + cmd + ' ') and has_meta:
-            deny("⚠️ 삭제(rm)가 섞인 복합 명령이라 자동 휴지통 처리가 불안전해요. "
-                 "안전을 위해 차단했어요. 단순 'rm <파일>' 형태로 하거나 직접 확인하세요.")
+    # 빠른 단어경계 검사 — rm이 단어로 등장하지 않으면 바로 통과 (예: 'confirm', 'norm')
+    if not re.search(r'(?<![\w.-])rm(?![\w.-])', cmd):
         allow()
 
-    # 여기부터 tokens[0] == 'rm'
-    if has_meta:
-        deny("⚠️ 삭제 명령에 파이프/리다이렉트 등이 섞여 자동 휴지통 처리가 불안전해요. 차단했어요.")
+    # 명령 구분자(줄바꿈 · ; · && · || · 파이프)로 세그먼트 분리 후, 각 세그먼트 첫 토큰이 rm인지 본다.
+    # → 멀티라인/복합 명령 속 rm도, 파이프 오른쪽 'ls | rm x' 도 잡힌다.
+    segments = [s.strip() for s in re.split(r'&&|\|\||;|\||\n', cmd) if s.strip()]
+    rm_segs = []
+    for seg in segments:
+        try:
+            toks = shlex.split(seg)
+        except Exception:
+            toks = seg.split()
+        if toks and toks[0] == 'rm':
+            rm_segs.append((seg, toks))
 
-    paths = [t for t in tokens[1:] if not t.startswith('-')]
+    if not rm_segs:
+        allow()  # rm이 단어로는 있지만 실제 삭제 명령은 아님 (예: 변수·주석)
+
+    # rm 세그먼트에 파이프/리다이렉트/치환/백그라운드가 섞이면 휴지통 처리가 불안전 → 차단
+    for seg, _ in rm_segs:
+        if any(m in seg for m in UNSAFE):
+            deny("⚠️ 삭제(rm)에 파이프/리다이렉트 등이 섞여 자동 휴지통 처리가 불안전해요. "
+                 "안전을 위해 차단했어요. 단순 'rm <파일>' 형태로 하거나 직접 확인하세요.")
+
+    # 모든 rm 세그먼트에서 경로 수집 (옵션 플래그 제외)
+    paths = []
+    for _, toks in rm_segs:
+        paths.extend(t for t in toks[1:] if not t.startswith('-'))
     if not paths:
         allow()
 

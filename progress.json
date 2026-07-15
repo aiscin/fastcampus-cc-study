@@ -1,13 +1,43 @@
 {
-  "level": "AI Starter",
-  "level_number": 1,
-  "completed_parts": [],
-  "current_part": "Part 06",
-  "current_clip": 6,
-  "practice_completed": [23, 24, 25, 26, 27],
+  "level": "AI Advanced",
+  "level_number": 3,
+  "completed_parts": [
+    "Part 06"
+  ],
+  "current_part": "Part 07",
+  "current_clip": 2,
+  "practice_completed": [
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33
+  ],
+  "projects_completed": [
+    "workspace"
+  ],
   "theory_completed": [],
-  "skills_created": ["deep-research", "ideation-funnel", "trip-advisor", "naver-news"],
-  "commands_created": [],
+  "skills_created": [
+    "deep-research",
+    "ideation-funnel",
+    "trip-advisor",
+    "naver-news",
+    "fashion-trend",
+    "audio-to-doc",
+    "daily-news",
+    "morning-briefing",
+    "content-pipeline",
+    "yonori-reels"
+  ],
+  "commands_created": [
+    "morning-briefing"
+  ],
   "hooks_created": [],
   "mcp_connected": [],
   "plugins_installed": [],
@@ -22,7 +52,7 @@
     "META": 1.0
   },
   "priorities_for_part05": [],
-  "last_activity": "2026-06-25",
+  "last_activity": "2026-07-06",
   "environment": {
     "os": null,
     "model": null,

@@ -1,0 +1,48 @@
+{
+  "$profile": "시장동향 — 반복 리서치용. 'TOPIC'과 keywords만 바꿔 넣으면 deep-research Phase 1(인터뷰 4문항)을 건너뛴다.",
+  "task": {
+    "title": "TOPIC 시장 동향과 성장 전망 종합 분석",
+    "objective": "TOPIC 시장의 현재 규모·성장률·주요 플레이어·최근 변화를 근거와 함께 정리하고, 향후 12개월 전망과 핵심 리스크를 제시한다.",
+    "type": "exploratory"
+  },
+  "context": {
+    "background": "빠르게 바뀌는 TOPIC 시장을 반복적으로 추적하기 위한 정기 리서치. 최신 수치와 검증된 출처가 핵심이며, 벤더 홍보성 주장과 독립 분석을 구분해야 한다.",
+    "audience": "executive",
+    "use_case": "정기 시장 브리핑 · 의사결정 참고용 요약",
+    "prior_knowledge": []
+  },
+  "questions": {
+    "primary": "TOPIC 시장의 현재 상태와 향후 12개월 방향은 무엇이며, 그 근거는 얼마나 견고한가?",
+    "secondary": [
+      "시장 규모와 성장률의 최신 수치와 출처는?",
+      "주요 플레이어와 최근 점유율·전략 변화는?",
+      "수요·기술·규제 측면의 최근 변곡점은?",
+      "낙관/비관 전망이 갈리는 지점과 각각의 근거는?"
+    ],
+    "exclusions": ["단순 제품 사용법", "TOPIC과 무관한 일반 거시경제 개괄"]
+  },
+  "constraints": {
+    "timeframe": {"start": "2024", "end": "present", "focus_period": "최근 6개월"},
+    "geography": {"scope": "global", "regions": ["한국", "미국"], "exclude_regions": []},
+    "sources": {
+      "required_types": ["industry_reports", "news", "official_docs"],
+      "excluded_domains": [],
+      "min_quality": "B",
+      "language": ["ko", "en"]
+    },
+    "data_requirements": {"quantitative": true, "qualitative": true, "specific_metrics": ["시장 규모", "성장률(CAGR)", "주요 기업 점유율"]}
+  },
+  "output": {
+    "format": "executive_brief",
+    "length": {"min_words": 1500, "max_words": 3500, "executive_summary_words": 400},
+    "structure": {"include_executive_summary": true, "include_methodology": false, "include_visualizations": true, "include_bibliography": true, "generate_website": false},
+    "citation_style": "inline",
+    "tone": "professional"
+  },
+  "keywords": ["TOPIC 2026", "TOPIC 시장 규모", "TOPIC 전망", "TOPIC 최신 동향"],
+  "special_instructions": [
+    "벤더 자체 리서치와 독립 출처를 분리해서 명시",
+    "핵심 수치는 반드시 2개 이상 출처로 교차검증",
+    "결과는 50-my-work 아래로 저장(CLAUDE.md 운영 규칙)"
+  ]
+}
